@@ -19,14 +19,14 @@
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Work Management</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <button class="nav-link btn btn-dark px-3" id="logout" >Sign out</button>
+                <button class="nav-link btn btn-dark px-3" id="logout" >Logout</button>
             </li>
         </ul>
     </nav>
 
     <div class="container-fluid">
         <div class="row">
-            <?php include 'inc_nav.php'; ?>
+            <?php include 'inc_nav_admin.php'; ?>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Dashboard</h1>
