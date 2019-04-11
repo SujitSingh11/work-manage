@@ -53,8 +53,7 @@
         </div>
         </footer>
     </div>
-    <?php include 'includes/inc_login_model.php'; ?>
-
+<?php include 'includes/inc_login_model.php'; ?>
 <?php include 'includes/inc_js.php'; ?>
 </body>
 </html>

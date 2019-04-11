@@ -34,6 +34,7 @@
 							<div class="col mb-3">
 								<label class="col-form-label">Re-Enter Password</label>
 								<input type="password" class="form-control" name="re-password" placeholder="Re-Enter Password">
+								<input type="hidden" name="user_type" value="1">
 							</div>
 						</div>
 						<div class="modal-footer">
