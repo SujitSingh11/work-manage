@@ -11,8 +11,7 @@ $passcheck = mysqli_real_escape_string($conn,$_POST['re-password']);
 $user_type = 1;
 
 if($pass=$passcheck)
-{   // Password Encription
-    $password = $conn->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
+{
 
     // Check if user with that email already exists
     $result = $conn->query("SELECT * FROM users WHERE email='$email'");
@@ -28,7 +27,7 @@ if($pass=$passcheck)
         // Email doesn't already exist in a database, proceed...
 
         // active is 0 by DEFAULT (no need to include it here)
-        $sql_users = "INSERT INTO `tbl_users`(`user_type`, `first_name`, `last_name`, `email`, `password`) VALUES ('$user_type','$first_name','$last_name','$email','$password')";
+        $sql_users = "INSERT INTO `tbl_users`(`user_type`, `first_name`, `last_name`, `email`, `password`) VALUES ('$user_type','$first_name','$last_name','$email','$pass')";
 
         // Add user to the users table
         $query = mysqli_query($conn,$sql_users);

@@ -9,14 +9,14 @@ $result = $conn->query("SELECT * FROM tbl_users WHERE email='$email'");
 
 if ( $result->num_rows == 0 ){ // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist!";
-    header("location: index.php");
+    header("location: ../index.php");
 }
 else {
     // User exists
     $user = $result->fetch_assoc();
 
     // Password verify
-    if ( password_verify($_POST['password'], $user['password'])) {
+    if ($_POST['password'] == $user['password']) {
 
         // Initilize the session variables
         $_SESSION['user_id'] = $user['user_id'];
