@@ -1,10 +1,9 @@
 <?php
     include '../assets/db/db.php';
     session_start();
-
-    $sql_projects="SELECT tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_client.`first_name`,tbl_client.`last_name` FROM tbl_project ,tbl_client WHERE tbl_project.`project_id` = tbl_client.`project_id`";
+    $m_id = $_SESSION['m_id'];
+    $sql_projects="SELECT * FROM tbl_project WHERE m_id = $m_id";
     $query_projects = mysqli_query($conn,$sql_projects);
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -12,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Manager</title>
+    <title>My Projects</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -34,7 +33,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <?php include 'inc_nav_manager.php'; ?>
+        <?php include 'inc_nav_employee.php'; ?>
 
         <div class="main-panel">
 			<div class="content">
@@ -42,7 +41,7 @@
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">All Projects</h2>
+								<h2 class="text-white pb-2 fw-bold">My Projects</h2>
 							</div>
 						</div>
 					</div>
@@ -61,48 +60,52 @@
                 ?>
                 <div class="row m-3">
                     <?php
-                    if (mysqli_num_rows($query_projects) > 0) {
+                    if ($query_projects->num_rows > 0) {
                         while ($row = mysqli_fetch_assoc($query_projects)) {
-                            $m_id = $row['m_id'];
-                            $sql_manager = "SELECT tbl_users.user_id AS user_id, tbl_manager.m_id AS m_id, tbl_users.first_name AS first_name, tbl_users.last_name AS last_name FROM tbl_users INNER JOIN tbl_manager ON tbl_manager.user_id = tbl_users.user_id";
-                            $query_manager = mysqli_query($conn,$sql_manager);
-                            while ($row_manager = mysqli_fetch_assoc($query_manager)) {
-                                if ($row_manager['m_id'] == $m_id) {
-                                ?>
-                                <div class="col col-md-4">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <div class="card-title"><?= $row['project_name']?></div>
+                            $client_id = $row['client_id'];
+                            $sql_client = "SELECT * FROM tbl_client WHERE client_id = $client_id";
+                            $query_client = mysqli_query($conn,$sql_client);
+                            $data_client = mysqli_fetch_assoc($query_client);
+                        ?>
+                        <div class="col col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title"><?= $row['project_name']?></div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mr-2">
+                                        <div class="col-md-12">
+                                            <p>Customer Name: <?= $data_client['first_name'].' '.$data_client['last_name']?></p>
+
+                                            <p>Project Revenew: <?= $row['project_price']?></p>
+
+                                            <p>Deadline: <?= $row['project_deadline']?></p>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row mr-2">
-                                                <div class="col-md-12">
-                                                    <p>Project Created by: <?= $row_manager['first_name'].' '.$row_manager['last_name']?> </p>
-
-                                                    <p>Customer Name: <?= $row['first_name'].' '.$row['last_name']?></p>
-
-                                                    <p>Project Revenew: <?= $row['project_price']?></p>
-
-                                                    <p>Deadline: <?= $row['project_deadline']?></p>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row mt-1 mr-2">
-                                                <div class="col-md-12">
-                                                    <button type="button" class="btn btn-round btn-primary mr-2">
-                                                        <i class="fa fa-clipboard-list mr-1"></i>
-                                                        <span>View Task</span>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-1 mr-2">
+                                        <div class="ml-2">
+                                            <button type="button" class="btn btn-round btn-primary mr-2">
+                                                <i class="fa fa-edit"></i>
+                                                <span>Edit Project</span>
+                                            </button>
+                                            <button type="button" class="btn btn-round btn-primary mr-2">
+                                                <i class="fa fa-clipboard-list"></i>
+                                                <span>View Task</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <?php
-                                }
-                            }
+                            </div>
+                        </div>
+                        <?php
+
                         }
-                    }
+                    }else {?>
+                        <div class="alert alert-warning fade show mt-2" role="alert">
+                            No Projects Found
+                        </div>
+                    <?php }
                     ?>
                 </div>
 			</div>
@@ -142,7 +145,7 @@
             location.href = "../login-system/logout.php";
         };
     </script>
-    <?php include 'add_project.php'; ?>
+
     <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>

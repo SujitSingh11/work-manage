@@ -2,7 +2,7 @@
     include '../assets/db/db.php';
     session_start();
 
-    $sql_projects="SELECT tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_client.`first_name`,tbl_client.`last_name` FROM tbl_project ,tbl_client WHERE tbl_project.`project_id` = tbl_client.`project_id`";
+    $sql_projects="SELECT  tbl_project.`project_id`,tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_client.`first_name`,tbl_client.`last_name` FROM tbl_project ,tbl_client WHERE tbl_project.`project_id` = tbl_client.`project_id`";
     $query_projects = mysqli_query($conn,$sql_projects);
 
 ?>
@@ -34,7 +34,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <?php include 'inc_nav_manager.php'; ?>
+        <?php include 'inc_nav_employee.php'; ?>
 
         <div class="main-panel">
 			<div class="content">
@@ -74,7 +74,7 @@
                                         <div class="card-header">
                                             <div class="card-title"><?= $row['project_name']?></div>
                                         </div>
-                                        <div class="card-body">
+                                        <form class="card-body" action="join_project.php" method="POST">
                                             <div class="row mr-2">
                                                 <div class="col-md-12">
                                                     <p>Project Created by: <?= $row_manager['first_name'].' '.$row_manager['last_name']?> </p>
@@ -89,13 +89,15 @@
                                             <hr>
                                             <div class="row mt-1 mr-2">
                                                 <div class="col-md-12">
-                                                    <button type="button" class="btn btn-round btn-primary mr-2">
-                                                        <i class="fa fa-clipboard-list mr-1"></i>
-                                                        <span>View Task</span>
+                                                    <input type="hidden" name="e_id" value="<?=$_SESSION['e_id']?>">
+                                                    <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
+                                                    <button type="submit" class="btn btn-round btn-primary mr-2">
+                                                        <i class="fa fa-external-link-alt mr-1"></i>
+                                                        <span>Join</span>
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <?php
@@ -142,7 +144,6 @@
             location.href = "../login-system/logout.php";
         };
     </script>
-    <?php include 'add_project.php'; ?>
     <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>

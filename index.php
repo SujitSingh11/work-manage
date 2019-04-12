@@ -34,8 +34,7 @@
             <div class="inner">
                 <h3 class="masthead-brand">Work Management</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" data-toggle="modal" data-target="#signupmodal">Sign-up</a>
-                    <a class="nav-link active" data-toggle="modal" data-target="#signinmodal">Sign-in</a>
+                    <a class="nav-link active" data-toggle="modal" data-target="#feedback">Feedback</a>
                 </nav>
             </div>
         </header>
