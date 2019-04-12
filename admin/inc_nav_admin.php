@@ -22,7 +22,7 @@
         <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
             <div class="container-fluid">
                 <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-                    <li class="nav-item dropdown hidden-caret">
+                    <!--<li class="nav-item dropdown hidden-caret">
                         <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-envelope"></i>
                         </a>
@@ -91,7 +91,7 @@
                                 <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li class="nav-item dropdown hidden-caret">
                         <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                             <i class="fas fa-layer-group"></i>

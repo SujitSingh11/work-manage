@@ -22,7 +22,7 @@
         <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
             <div class="container-fluid">
                 <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-                    <li class="nav-item dropdown hidden-caret">
+                    <!--<li class="nav-item dropdown hidden-caret">
                         <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-envelope"></i>
                         </a>
@@ -91,7 +91,7 @@
                                 <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li class="nav-item dropdown hidden-caret">
                         <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                             <i class="fas fa-layer-group"></i>
@@ -122,7 +122,7 @@
                                                 <span class="text">Edit Project</span>
                                             </div>
                                         </a>
-                                        <a class="col-6 col-md-6 p-0" href="#">
+                                        <a class="col-6 col-md-6 p-0" href="my_projects.php">
                                             <div class="quick-actions-item">
                                                 <i class="flaticon-list"></i>
                                                 <span class="text">View Projects</span>
@@ -146,7 +146,9 @@
                                         <div class="avatar-lg"><img src="../assets/img/profile3.png" alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
                                             <h4><?=$_SESSION['first_name'].' '.$_SESSION['last_name']?></h4>
-                                            <p class="text-muted"><?=$_SESSION['email']?></p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                            <p class="text-muted"><?=$_SESSION['email']?></p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">
+                                                View Profile
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -208,25 +210,31 @@
                         <h4 class="text-section">Dashboard</h4>
                     </li>
                     <li class="nav-item">
+                        <a href="manager_index.php">
+                            <i class="fas fa-window-maximize"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#base" data-toggle="modal" data-target="#addprojectmodal">
                             <i class="fas fa-plus"></i>
                             <p>Add Projects</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#base">
+                        <a href="my_projects.php">
                             <i class="fas fa-layer-group"></i>
                             <p>My Projects</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#base">
+                        <a href="all_projects.php">
                             <i class="fas fa-folder"></i>
                             <p>All Projects</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#base">
+                        <a href="all_employee.php">
                             <i class="fas fa-users"></i>
                             <p>Employees</p>
                         </a>

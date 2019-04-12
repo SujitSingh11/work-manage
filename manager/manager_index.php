@@ -21,8 +21,12 @@
         });
     </script>
     <!-- Custom styles for this template -->
-
     <link rel="stylesheet" href="../assets/css/atlantis.min.css">
+    <script>
+        .alert .close{
+
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -30,11 +34,20 @@
 
         <div class="main-panel">
 			<div class="content">
+                <div class="panel-header bg-primary-gradient">
+					<div class="page-inner py-3">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+							<div>
+								<h2 class="text-white pb-2 fw-bold">Manager Dashboard</h2>
+							</div>
+						</div>
+					</div>
+				</div>
                 <?php
                     if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
                             <?=$_SESSION['message']?>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

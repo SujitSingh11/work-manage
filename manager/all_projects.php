@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My Projects</title>
+    <title>Manager</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -42,7 +42,7 @@
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">My Projects</h2>
+								<h2 class="text-white pb-2 fw-bold">All Projects</h2>
 							</div>
 						</div>
 					</div>
@@ -63,7 +63,7 @@
                     <?php
                     if (mysqli_num_rows($query_projects) > 0) {
                         while ($row = mysqli_fetch_assoc($query_projects)) {
-                            $m_id = $_SESSION['m_id'];
+                            $m_id = $row['m_id'];
                             $sql_manager = "SELECT tbl_users.user_id AS user_id, tbl_manager.m_id AS m_id, tbl_users.first_name AS first_name, tbl_users.last_name AS last_name FROM tbl_users INNER JOIN tbl_manager ON tbl_manager.user_id = tbl_users.user_id";
                             $query_manager = mysqli_query($conn,$sql_manager);
                             while ($row_manager = mysqli_fetch_assoc($query_manager)) {

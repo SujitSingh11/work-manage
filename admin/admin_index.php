@@ -29,18 +29,20 @@
 
         <div class="main-panel">
 			<div class="content">
-                <?php
-                    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <?=$_SESSION['message']?>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php
-                        unset($_SESSION['message']);
-                    }
-                ?>
+                <div class="container m-4">
+                    <?php
+                        if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
+                            <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+                                <?=$_SESSION['message']?>
+                                <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php
+                            unset($_SESSION['message']);
+                        }
+                    ?>
+                </div>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">

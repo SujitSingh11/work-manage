@@ -17,17 +17,17 @@
                         </div>
                         <div class="col">
                             <label class="col-form-label">Project Revenue (Optional)</label>
-                            <input type="text" class="form-control" name="project_price" placeholder="Project Revenue">
+                            <input type="number" class="form-control" name="project_price" placeholder="Project Revenue">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label class="col-form-label">Customer First Name</label>
-                            <input type="email" class="form-control" name="client_first_name" placeholder="Customer Name">
+                            <input type="text" class="form-control" name="client_first_name" placeholder="Customer Name">
                         </div>
                         <div class="col">
                             <label class="col-form-label">Customer Last Name</label>
-                            <input type="email" class="form-control" name="client_last_name" placeholder="Customer Name">
+                            <input type="text" class="form-control" name="client_last_name" placeholder="Customer Name">
                         </div>
                     </div>
                     <div class="form-row">
