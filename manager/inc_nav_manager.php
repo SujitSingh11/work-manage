@@ -1,57 +1,251 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-    <div class="sidebar-sticky">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                Dashboard
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-            Projects
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                Users
-            </a>
-        </li>
-    </ul>
 
-    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-    <span>Saved reports</span>
-    <a class="d-flex align-items-center text-muted">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-    </a>
-    </h6>
-    <ul class="nav flex-column mb-2">
-        <li class="nav-item">
-            <a class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Current month
+    <div class="main-header">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark2">
+            <a href="manager_index.php" class="logo">
+                <div alt="navbar brand" class="navbar-brand"><h3 style="color:#fff;">Work Management</h3></div>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Last quarter
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Social engagement
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Year-end sales
-            </a>
-        </li>
-    </ul>
+            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="icon-menu"></i>
+                </span>
+            </button>
+            <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="icon-menu"></i>
+                </button>
+            </div>
+        </div>
+        <!-- End Logo Header -->
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                    <li class="nav-item dropdown hidden-caret">
+                        <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                        <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
+                            <li>
+                                <div class="dropdown-title d-flex justify-content-between align-items-center">
+                                    Notifications
+                                    <a href="#" class="small">Mark all as read</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="message-notif-scroll scrollbar-outer">
+                                    <div class="notif-center">
+                                        <a href="#">
+                                            <div class="notif-img">
+                                                <img src="../assets/img/jm_denis.jpg" alt="Img Profile">
+                                            </div>
+                                            <div class="notif-content">
+                                                <span class="subject">Jimmy Denis</span>
+                                                <span class="block">
+                                                    How are you ?
+                                                </span>
+                                                <span class="time">5 minutes ago</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="notif-img">
+                                                <img src="../assets/img/chadengle.jpg" alt="Img Profile">
+                                            </div>
+                                            <div class="notif-content">
+                                                <span class="subject">Chad</span>
+                                                <span class="block">
+                                                    Ok, Thanks !
+                                                </span>
+                                                <span class="time">12 minutes ago</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="notif-img">
+                                                <img src="../assets/img/mlane.jpg" alt="Img Profile">
+                                            </div>
+                                            <div class="notif-content">
+                                                <span class="subject">Jhon Doe</span>
+                                                <span class="block">
+                                                    Ready for the meeting today...
+                                                </span>
+                                                <span class="time">12 minutes ago</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="notif-img">
+                                                <img src="../assets/img/talha.jpg" alt="Img Profile">
+                                            </div>
+                                            <div class="notif-content">
+                                                <span class="subject">Talha</span>
+                                                <span class="block">
+                                                    Hi, Apa Kabar ?
+                                                </span>
+                                                <span class="time">17 minutes ago</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown hidden-caret">
+                        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="fas fa-layer-group"></i>
+                        </a>
+                        <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
+                            <div class="quick-actions-header">
+                                <span class="title mb-1">Quick Actions</span>
+                                <span class="subtitle op-8">Shortcuts</span>
+                            </div>
+                            <div class="quick-actions-scroll scrollbar-outer">
+                                <div class="quick-actions-items">
+                                    <div class="row m-0">
+                                        <a class="col-6 col-md-6 p-0" href="#">
+                                            <div class="quick-actions-item">
+                                                <i class="flaticon-file-1"></i>
+                                                <span class="text">Approve Employee</span>
+                                            </div>
+                                        </a>
+                                        <a class="col-6 col-md-6 p-0" href="#" data-toggle="modal" data-target="#addprojectmodal">
+                                            <div class="quick-actions-item">
+                                                <i class="flaticon-pen"></i>
+                                                <span class="text">Create New Project</span>
+                                            </div>
+                                        </a>
+                                        <a class="col-6 col-md-6 p-0" href="#">
+                                            <div class="quick-actions-item">
+                                                <i class="flaticon-interface-1"></i>
+                                                <span class="text">Edit Project</span>
+                                            </div>
+                                        </a>
+                                        <a class="col-6 col-md-6 p-0" href="#">
+                                            <div class="quick-actions-item">
+                                                <i class="flaticon-list"></i>
+                                                <span class="text">View Projects</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown hidden-caret">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <div class="avatar-sm">
+                                <img src="../assets/img/profile3.png" alt="..." class="avatar-img rounded-circle">
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user animated fadeIn">
+                            <div class="dropdown-user-scroll scrollbar-outer">
+                                <li>
+                                    <div class="user-box">
+                                        <div class="avatar-lg"><img src="../assets/img/profile3.png" alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="u-text">
+                                            <h4><?=$_SESSION['first_name'].' '.$_SESSION['last_name']?></h4>
+                                            <p class="text-muted"><?=$_SESSION['email']?></p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">My Profile</a>
+                                    <a class="dropdown-item" href="#">Inbox</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Account Setting</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" id="logout2">Logout</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</nav>
+        <!-- End Navbar -->
+    <div class="sidebar sidebar-style-2">
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+                <div class="user">
+                    <div class="avatar-sm float-left mr-2">
+                        <img src="../assets/img/profile3.png" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    <div class="info">
+                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            <span>
+                                <?=$_SESSION['first_name'].' '.$_SESSION['last_name']?>
+                                <span class="user-level">Manager</span>
+                                <span class="caret"></span>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+
+                        <div class="collapse in" id="collapseExample">
+                            <ul class="nav">
+                                <li>
+                                    <a href="#profile">
+                                        <span class="link-collapse">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#edit">
+                                        <span class="link-collapse">Edit Profile</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-primary">
+                    <li class="nav-section">
+                        <span class="sidebar-mini-icon">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </span>
+                        <h4 class="text-section">Dashboard</h4>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#base" data-toggle="modal" data-target="#addprojectmodal">
+                            <i class="fas fa-plus"></i>
+                            <p>Add Projects</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#base">
+                            <i class="fas fa-layer-group"></i>
+                            <p>My Projects</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#base">
+                            <i class="fas fa-folder"></i>
+                            <p>All Projects</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#base">
+                            <i class="fas fa-users"></i>
+                            <p>Employees</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#base">
+                            <i class="fas fa-cogs"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#base" id="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Sidebar -->

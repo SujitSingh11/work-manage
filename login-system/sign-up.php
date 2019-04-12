@@ -1,5 +1,5 @@
 <?php
-include_once '../db/db.php';
+require '../assets/db/db.php';
 session_start();
 
 // Escape all $_POST variables to protect against SQL injections

@@ -1,6 +1,6 @@
 <?php
 /* User login process, checks if user exists and password is correct */
-require '../db/db.php';
+require '../assets/db/db.php';
 session_start();
 
 // Escape email to protect against SQL injections

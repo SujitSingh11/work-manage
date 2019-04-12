@@ -1,5 +1,5 @@
 <?php
-    include 'db/db.php';
+    include 'assets/db/db.php';
     session_start();
 ?>
 <!DOCTYPE html>
@@ -10,20 +10,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
       .modal-content{
-          text-align: -webkit-auto;
+          text-align: left;
           color: black;
       }
+      .bg {
+          /* The image used */
+          background-image: url("assets/img/bg2.jpg");
+
+          /* Full height */
+          height: 100%;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
     </style>
-    <link href="css/cover.css" rel="stylesheet">
+    <link href="assets/css/cover.css" rel="stylesheet">
 </head>
-<body class="text-center" data-gr-c-s-loaded="true">
+<body class="text-center bg" data-gr-c-s-loaded="true">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
                 <h3 class="masthead-brand">Work Management</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="javascript:void(0)" data-toggle="modal" data-target="#signupmodal">Sign-up</a>
-                    <a class="nav-link active" href="javascript:void(0)" data-toggle="modal" data-target="#signinmodal">Sign-in</a>
+                    <a class="nav-link active" data-toggle="modal" data-target="#signupmodal">Sign-up</a>
+                    <a class="nav-link active" data-toggle="modal" data-target="#signinmodal">Sign-in</a>
                 </nav>
             </div>
         </header>
@@ -46,14 +58,16 @@
             </p>
         </main>
 
-
         <footer class="mastfoot mt-auto">
         <div class="inner">
         <p>Made by @Sujit_Singh 2019</p>
         </div>
         </footer>
     </div>
-<?php include 'includes/inc_login_model.php'; ?>
-<?php include 'includes/inc_js.php'; ?>
+
+    <script src="assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <?php include 'includes/inc_login_model.php'; ?>
 </body>
 </html>
