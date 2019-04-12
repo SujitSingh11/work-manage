@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Manager</title>
+    <title>All Projects</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -63,10 +63,16 @@
                     <?php
                     if (mysqli_num_rows($query_projects) > 0) {
                         while ($row = mysqli_fetch_assoc($query_projects)) {
+                            $e_id = $_SESSION['e_id'];
                             $m_id = $row['m_id'];
+                            $project_id = $row['project_id'];
                             $sql_manager = "SELECT tbl_users.user_id AS user_id, tbl_manager.m_id AS m_id, tbl_users.first_name AS first_name, tbl_users.last_name AS last_name FROM tbl_users INNER JOIN tbl_manager ON tbl_manager.user_id = tbl_users.user_id";
                             $query_manager = mysqli_query($conn,$sql_manager);
+                            $sql_join = "SELECT * FROM tbl_employee_project WHERE e_id = $e_id AND project_id = $project_id";
+                            $query_join = mysqli_query($conn,$sql_join);
+
                             while ($row_manager = mysqli_fetch_assoc($query_manager)) {
+
                                 if ($row_manager['m_id'] == $m_id) {
                                 ?>
                                 <div class="col col-md-4">
@@ -89,12 +95,26 @@
                                             <hr>
                                             <div class="row mt-1 mr-2">
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="e_id" value="<?=$_SESSION['e_id']?>">
-                                                    <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
-                                                    <button type="submit" class="btn btn-round btn-primary mr-2">
-                                                        <i class="fa fa-external-link-alt mr-1"></i>
-                                                        <span>Join</span>
-                                                    </button>
+                                                    <input type="hidden" name="e_id" value="<?=$e_id?>">
+                                                    <input type="hidden" name="project_id" value="<?=$project_id?>">
+                                                    <?php
+                                                        if (mysqli_num_rows($query_join) > 0) { ?>
+                                                            <button type="button" class="btn btn-round btn-primary mr-2" disabled="disabled">
+                                                                <i class="fa fa-external-link-alt mr-1"></i>
+                                                                <span>Joined</span>
+                                                            </button>
+                                                            <button type="submit" name="leave" class="btn btn-round btn-danger mr-2">
+                                                                <i class="fa fa-external-link-alt mr-1"></i>
+                                                                <span>Leave</span>
+                                                            </button>
+                                                        <?php }else { ?>
+                                                            <button type="submit" name="join" class="btn btn-round btn-primary mr-2">
+                                                                <i class="fa fa-external-link-alt mr-1"></i>
+                                                                <span>Join</span>
+                                                            </button>
+                                                        <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </form>
@@ -136,6 +156,8 @@
 			</footer>
 		</div>
     </div>
+
+    <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {
             location.href = "../login-system/logout.php";
@@ -143,7 +165,53 @@
         document.getElementById("logout2").onclick = function () {
             location.href = "../login-system/logout.php";
         };
+        <?php
+            if (isset($_SESSION['join']) AND !empty($_SESSION['join'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Project Joined",
+                        text: "Click ok to continue",
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-success",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['join']);
+            }
+            if (isset($_SESSION['leave']) AND !empty($_SESSION['leave'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Project Left",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['leave']);
+            }
+        ?>
+
+        //== Class Initialization
+		jQuery(document).ready(function() {
+			SweetAlert2Demo.init();
+		});
     </script>
-    <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>

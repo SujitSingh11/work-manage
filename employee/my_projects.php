@@ -137,6 +137,8 @@
 			</footer>
 		</div>
     </div>
+
+    <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {
             location.href = "../login-system/logout.php";
@@ -145,7 +147,5 @@
             location.href = "../login-system/logout.php";
         };
     </script>
-
-    <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>
