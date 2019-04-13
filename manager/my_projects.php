@@ -37,7 +37,7 @@
 
         <div class="main-panel">
 			<div class="content">
-                <div class="panel-header bg-primary-gradient">
+                <div class="panel-header bg-danger-gradient">
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
@@ -69,8 +69,8 @@
                         ?>
                         <div class="col col-md-4">
                             <div class="card">
-                                <div class="card-header">
-                                    <div class="card-title"><?= $row['project_name']?></div>
+                                <div class="card-header bg-dark-gradient">
+                                    <div class="card-title" style="color:#fff;"><?= $row['project_name']?></div>
                                 </div>
                                 <div class="card-body">
                                     <div class="row mr-2">

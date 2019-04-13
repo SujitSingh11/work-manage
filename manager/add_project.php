@@ -2,10 +2,10 @@
 <div id="addprojectmodal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title display-4" style="font-size:30px;">Add Project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+            <div class="modal-header bg-dark-gradient">
+                <h5 class="modal-title display-4" style="font-size:30px; color:#fff;">Add Project</h5>
+                <button type="button" style="color:#fff;" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color:#fff;">&times;</span>
                 </button>
             </div>
             <div class="modal-body">

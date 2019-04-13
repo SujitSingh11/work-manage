@@ -2,7 +2,7 @@
     include '../assets/db/db.php';
     session_start();
 
-    $sql_employees = "SELECT tbl_users.user_id AS user_id, tbl_employee.e_id AS stud_id, tbl_users.first_name AS first_name, tbl_users.last_name AS last_name,
+    $sql_employees = "SELECT tbl_users.user_id AS user_id, tbl_employee.e_id AS e_id, tbl_users.first_name AS first_name, tbl_users.last_name AS last_name,
     tbl_users.email AS email, tbl_employee.active AS active
             FROM tbl_users
             INNER JOIN tbl_employee ON tbl_employee.user_id = tbl_users.user_id";
@@ -41,7 +41,7 @@
 
         <div class="main-panel">
 			<div class="content">
-                <div class="panel-header bg-primary-gradient">
+                <div class="panel-header bg-warning-gradient">
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
@@ -65,10 +65,10 @@
                 <div class="row m-5">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header bg-dark-gradient">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="card-title">Employees</h4>
-                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                                    <h4 class="card-title" style="color:#fff;">Employees</h4>
+                                    <button class="btn btn-dark btn-round ml-auto" data-toggle="modal" data-target="#addemployee">
                                         <i class="fa fa-plus"></i>
                                         Add Employee
                                     </button>
@@ -76,53 +76,53 @@
                             </div>
                             <div class="card-body">
                                 <!-- Modal -->
-                                <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header no-bd">
-                                                <h5 class="modal-title">
-                                                    <span class="fw-mediumbold">
-                                                    New</span>
-                                                    <span class="fw-light">
-                                                        Row
-                                                    </span>
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p class="small">Create a new row using this form, make sure you fill them all</p>
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group form-group-default">
-                                                                <label>Name</label>
-                                                                <input id="addName" type="text" class="form-control" placeholder="fill name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 pr-0">
-                                                            <div class="form-group form-group-default">
-                                                                <label>Position</label>
-                                                                <input id="addPosition" type="text" class="form-control" placeholder="fill position">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group form-group-default">
-                                                                <label>Office</label>
-                                                                <input id="addOffice" type="text" class="form-control" placeholder="fill office">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer no-bd">
-                                                <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div id="addemployee" class="modal fade" tabindex="-1" role="dialog">
+                            		<div class="modal-dialog" role="document">
+                            			<div class="modal-content">
+                            				<div class="modal-header bg-dark-gradient">
+                            					<h5 class="modal-title display-4" style="font-size:30px; color:#fff;">Add Employee</h5>
+                            					<button type="button" style=" color:#fff;"class="close" data-dismiss="modal" aria-label="Close">
+                            					<span aria-hidden="true">&times;</span>
+                            					</button>
+                            				</div>
+                            				<div class="modal-body">
+                            					<form  method="POST" action="add_employee.php">
+                            						<div class="form-row">
+                            							<div class="col">
+                            								<label class="col-form-label">First Name</label>
+                            								<input type="text" class="form-control" name="first" placeholder="First name">
+                            							</div>
+                            							<div class="col">
+                            								<label class="col-form-label">Last Name</label>
+                            								<input type="text" class="form-control" name="last" placeholder="Last name">
+                            							</div>
+                            						</div>
+                            						<div class="form-row">
+                            							<div class="col">
+                            								<label class="col-form-label">E-mail</label>
+                            								<input type="email" class="form-control" name="email" placeholder="Email">
+                            							</div>
+                            						</div>
+                            						<div class="form-row">
+                            							<div class="col">
+                            								<label class="col-form-label">Password</label>
+                            								<input type="password" class="form-control" name="password" placeholder="Password">
+                            							</div>
+                            							<div class="col mb-3">
+                            								<label class="col-form-label">Re-Enter Password</label>
+                            								<input type="password" class="form-control" name="re-password" placeholder="Re-Enter Password">
+                            								<input type="hidden" name="user_type" value="1">
+                            							</div>
+                            						</div>
+                            						<div class="modal-footer">
+                            							<button type="submit" name="register" class="btn btn-dark">Sign-up</button>
+                            							<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            						</div>
+                            					</form>
+                            				</div>
+                            			</div>
+                            		</div>
+                            	</div>
 
                                 <div class="table-responsive">
                                     <table id="add-row" class="display table table-striped table-hover" >
@@ -153,23 +153,26 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <div class="form-button-action">
+                                                        <form class="form-button-action" action="employee_edit.php" method="POST">
+                                                            <input type="hidden" name="user_id" value="<?=$row['user_id']?>">
+                                                            <input type="hidden" name="e_id" value="<?=$row['e_id']?>">
                                                             <?php
                                                             if ($row['active'] == 0) {
                                                             ?>
-                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Approve">
+                                                            <button type="submit" data-toggle="tooltip" name="approve" class="btn btn-link btn-primary" data-original-title="Approve">
                                                                 <i class="fa fa-check-circle"></i>
                                                             </button>
                                                             <?php
+                                                            }else { ?>
+                                                                <button type="submit" data-toggle="tooltip" name="deactivate" class="btn btn-link btn-warning" data-original-title="Deactivate">
+                                                                    <i class="fa fa-times-circle"></i>
+                                                                </button> <?php
                                                             }
                                                             ?>
-                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit Employee">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove Employee">
+                                                            <button type="submit" data-toggle="tooltip" name="remove" class="btn btn-link btn-danger" data-original-title="Remove Employee">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
-                                                        </div>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -212,6 +215,8 @@
 			</footer>
 		</div>
     </div>
+    <?php include 'add_project.php'; ?>
+    <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {
             location.href = "../login-system/logout.php";
@@ -219,8 +224,199 @@
         document.getElementById("logout2").onclick = function () {
             location.href = "../login-system/logout.php";
         };
+        <?php
+            if (isset($_SESSION['approve']) AND !empty($_SESSION['approve'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Account Approved",
+                        text: "Click OK to continue",
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-success",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['approve']);
+            }
+            if (isset($_SESSION['not_approve']) AND !empty($_SESSION['not_approve'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Account Failed to be Approved",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['not_approve']);
+            }
+        ?>
+        <?php
+            if (isset($_SESSION['deactivate']) AND !empty($_SESSION['deactivate'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Account Deactivated",
+                        text: "Click OK to continue",
+                        icon: "info",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-info",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['deactivate']);
+            }
+            if (isset($_SESSION['not_deactivate']) AND !empty($_SESSION['not_deactivate'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Failed to Deactivated",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['not_deactivate']);
+            }
+        ?>
+        <?php
+            if (isset($_SESSION['exists']) AND !empty($_SESSION['exists'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Already Exists",
+                        text: "Click OK to continue",
+                        icon: "info",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-info",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['exists']);
+            }
+            if (isset($_SESSION['not_added']) AND !empty($_SESSION['not_added'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "<?=$_SESSION['not_added']?>",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['not_added']);
+            }
+        ?>
+        <?php
+            if (isset($_SESSION['added']) AND !empty($_SESSION['added'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Added Successfully",
+                        text: "Click OK to continue",
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-success",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['added']);
+        } ?>
+        <?php
+            if (isset($_SESSION['remove']) AND !empty($_SESSION['remove'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Account Removed",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['remove']);
+            }
+            if (isset($_SESSION['not_remove']) AND !empty($_SESSION['not_remove'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "Employee Account Failed to Remove",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['not_remove']);
+            }
+        ?>
+        //== Class Initialization
+		jQuery(document).ready(function() {
+			SweetAlert2Demo.init();
+		});
     </script>
-    <?php include 'add_project.php'; ?>
-    <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>

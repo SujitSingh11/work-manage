@@ -104,7 +104,7 @@
                             <div class="quick-actions-scroll scrollbar-outer">
                                 <div class="quick-actions-items">
                                     <div class="row m-0">
-                                        <a class="col-6 col-md-6 p-0" href="#">
+                                        <a class="col-6 col-md-6 p-0" href="all_employee.php">
                                             <div class="quick-actions-item">
                                                 <i class="flaticon-file-1"></i>
                                                 <span class="text">Approve Employee</span>
@@ -116,13 +116,13 @@
                                                 <span class="text">Create New Project</span>
                                             </div>
                                         </a>
-                                        <a class="col-6 col-md-6 p-0" href="#">
+                                        <a class="col-6 col-md-6 p-0" href="my_projects.php">
                                             <div class="quick-actions-item">
                                                 <i class="flaticon-interface-1"></i>
                                                 <span class="text">Edit Project</span>
                                             </div>
                                         </a>
-                                        <a class="col-6 col-md-6 p-0" href="my_projects.php">
+                                        <a class="col-6 col-md-6 p-0" href="all_projects.php">
                                             <div class="quick-actions-item">
                                                 <i class="flaticon-list"></i>
                                                 <span class="text">View Projects</span>
@@ -198,6 +198,11 @@
                                         <span class="link-collapse">Edit Profile</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#Settings">
+                                        <span class="link-collapse">Settings</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -237,12 +242,6 @@
                         <a href="all_employee.php">
                             <i class="fas fa-users"></i>
                             <p>Employees</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#base">
-                            <i class="fas fa-cogs"></i>
-                            <p>Settings</p>
                         </a>
                     </li>
                     <li class="nav-item">

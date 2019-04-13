@@ -19,7 +19,7 @@ if($pass=$passcheck)
     // We know user email exists if the rows returned are more than 0
     if ( $result->num_rows > 0 ) {
         $_SESSION['message'] = 'User with this email already exists!';
-        if ($user_type == 1) {
+        if (empty($user_type)) {
             header("location: ../index.php");
         }elseif ($user_type == 2) {
             header("location: ../admin/admin_index.php");
