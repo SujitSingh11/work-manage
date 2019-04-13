@@ -1,8 +1,8 @@
 <?php
     include '../assets/db/db.php';
     session_start();
-    $m_id = $_SESSION['m_id'];
-    $sql_projects="SELECT * FROM tbl_project WHERE m_id = $m_id";
+    $e_id = $_SESSION['e_id'];
+    $sql_projects="SELECT  tbl_project.`project_id`,tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_employee_project.`e_id` FROM tbl_project ,tbl_employee_project WHERE tbl_project.`project_id` = tbl_employee_project.`project_id` ";
     $query_projects = mysqli_query($conn,$sql_projects);
 ?>
 <!DOCTYPE html>
@@ -62,44 +62,36 @@
                     <?php
                     if ($query_projects->num_rows > 0) {
                         while ($row = mysqli_fetch_assoc($query_projects)) {
-                            $client_id = $row['client_id'];
-                            $sql_client = "SELECT * FROM tbl_client WHERE client_id = $client_id";
-                            $query_client = mysqli_query($conn,$sql_client);
-                            $data_client = mysqli_fetch_assoc($query_client);
-                        ?>
-                        <div class="col col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="card-title"><?= $row['project_name']?></div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row mr-2">
-                                        <div class="col-md-12">
-                                            <p>Customer Name: <?= $data_client['first_name'].' '.$data_client['last_name']?></p>
-
-                                            <p>Project Revenew: <?= $row['project_price']?></p>
-
-                                            <p>Deadline: <?= $row['project_deadline']?></p>
-                                        </div>
+                            if ($row['e_id'] == $e_id) {
+                            ?>
+                            <div class="col col-md-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title"><?= $row['project_name']?></div>
                                     </div>
-                                    <hr>
-                                    <div class="row mt-1 mr-2">
-                                        <div class="ml-2">
-                                            <button type="button" class="btn btn-round btn-primary mr-2">
-                                                <i class="fa fa-edit"></i>
-                                                <span>Edit Project</span>
-                                            </button>
-                                            <button type="button" class="btn btn-round btn-primary mr-2">
-                                                <i class="fa fa-clipboard-list"></i>
-                                                <span>View Task</span>
-                                            </button>
+                                    <form class="card-body" method="POST" action="task.php">
+                                        <div class="row mr-2">
+                                            <div class="col-md-12">
+                                                <p>Deadline: <?= $row['project_deadline']?></p>
+                                                <p>Total Task: </p>
+                                                <p>Completed : </p>
+                                                <p>Remaning : </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <hr>
+                                        <div class="row mt-1 mr-2">
+                                            <div class="ml-2">
+                                                <button type="button" name="view_task" class="btn btn-round btn-primary mr-2">
+                                                    <i class="fa fa-tasks mr-1"></i>
+                                                    <span>View Task</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-
+                            <?php
+                            }
                         }
                     }else {?>
                         <div class="alert alert-warning fade show mt-2" role="alert">
@@ -131,7 +123,7 @@
 						</ul>
 					</nav>
 					<div class="copyright ml-auto">
-						2019 by <a href="https://github.com/baby-developers">Sujit_Singh</a>
+						@2019 Made by <a href="https://github.com/baby-developers">Sujit_Singh</a>
 					</div>
 				</div>
 			</footer>

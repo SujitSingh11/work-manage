@@ -78,7 +78,7 @@
 						</ul>
 					</nav>
 					<div class="copyright ml-auto">
-						2019 by <a href="https://github.com/baby-developers">Sujit_Singh</a>
+						@2019 Made by <a href="https://github.com/baby-developers">Sujit_Singh</a>
 					</div>
 				</div>
 			</footer>

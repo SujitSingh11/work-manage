@@ -84,11 +84,8 @@
                                             <div class="row mr-2">
                                                 <div class="col-md-12">
                                                     <p>Project Created by: <?= $row_manager['first_name'].' '.$row_manager['last_name']?> </p>
-
                                                     <p>Customer Name: <?= $row['first_name'].' '.$row['last_name']?></p>
-
                                                     <p>Project Revenew: <?= $row['project_price']?></p>
-
                                                     <p>Deadline: <?= $row['project_deadline']?></p>
                                                 </div>
                                             </div>
@@ -150,7 +147,7 @@
 						</ul>
 					</nav>
 					<div class="copyright ml-auto">
-						2019 by <a href="https://github.com/baby-developers">Sujit_Singh</a>
+						@2019 Made by <a href="https://github.com/baby-developers">Sujit_Singh</a>
 					</div>
 				</div>
 			</footer>
