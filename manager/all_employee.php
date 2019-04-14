@@ -45,23 +45,11 @@
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">All Employees</h2>
+								<h2 class="text-white pb-2 fw-bold mt-2">All Employees</h2>
 							</div>
 						</div>
 					</div>
 				</div>
-                <?php
-                    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
-                            <?=$_SESSION['message']?>
-                            <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php
-                        unset($_SESSION['message']);
-                    }
-                ?>
                 <div class="row m-5">
                     <div class="col-md-12">
                         <div class="card">

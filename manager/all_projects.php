@@ -2,7 +2,7 @@
     include '../assets/db/db.php';
     session_start();
 
-    $sql_projects="SELECT tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_client.`first_name`,tbl_client.`last_name` FROM tbl_project ,tbl_client WHERE tbl_project.`project_id` = tbl_client.`project_id`";
+    $sql_projects="SELECT tbl_project.`m_id`,tbl_project.`project_id`,tbl_project.`client_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_client.`first_name`,tbl_client.`last_name` FROM tbl_project ,tbl_client WHERE tbl_project.`project_id` = tbl_client.`project_id`";
     $query_projects = mysqli_query($conn,$sql_projects);
 
 ?>
@@ -42,23 +42,11 @@
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">All Projects</h2>
+								<h2 class="text-white pb-2 fw-bold mt-2">All Projects</h2>
 							</div>
 						</div>
 					</div>
 				</div>
-                <?php
-                    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
-                            <?=$_SESSION['message']?>
-                            <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php
-                        unset($_SESSION['message']);
-                    }
-                ?>
                 <div class="row m-3">
                     <?php
                     if (mysqli_num_rows($query_projects) > 0) {
@@ -88,12 +76,14 @@
                                             </div>
                                             <hr>
                                             <div class="row mt-1 mr-2 ">
-                                                <div class="col-md-12">
-                                                    <button type="button" class="btn btn-round btn-primary mr-2">
+                                                <form class="col-md-12" method="POST" action="view_task.php">
+                                                    <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
+                                                    <input type="hidden" name="client_id" value="<?=$row['client_id']?>">
+                                                    <button type="submit" class="btn btn-round btn-primary mr-2">
                                                         <i class="fa fa-clipboard-list mr-1"></i>
                                                         <span>View Task</span>
                                                     </button>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

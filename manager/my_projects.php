@@ -41,7 +41,7 @@
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">My Projects</h2>
+								<h2 class="text-white pb-2 fw-bold mt-2">My Projects</h2>
 							</div>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
                                 <div class="card-header bg-dark-gradient">
                                     <div class="card-title" style="color:#fff;"><?= $row['project_name']?></div>
                                 </div>
-                                <div class="card-body">
+                                <form class="card-body" method="POST" action="task.php">
                                     <div class="row mr-2">
                                         <div class="col-md-12">
                                             <p>Customer Name: <?= $data_client['first_name'].' '.$data_client['last_name']?></p>
@@ -85,17 +85,19 @@
                                     <hr>
                                     <div class="row mt-1 mr-2">
                                         <div class="ml-2">
+                                            <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
+                                            <input type="hidden" name="client_id" value="<?=$data_client['client_id']?>">
                                             <button type="button" class="btn btn-round btn-primary mr-2">
                                                 <i class="fa fa-edit"></i>
                                                 <span>Edit Project</span>
                                             </button>
-                                            <button type="button" class="btn btn-round btn-primary mr-2">
+                                            <button type="submit" class="btn btn-round btn-primary mr-2">
                                                 <i class="fa fa-clipboard-list"></i>
                                                 <span>View Task</span>
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <?php

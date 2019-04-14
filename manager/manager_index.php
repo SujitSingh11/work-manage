@@ -38,7 +38,7 @@
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">Manager Dashboard</h2>
+								<h2 class="text-white pb-2 fw-bold mt-2">Manager Dashboard</h2>
 							</div>
 						</div>
 					</div>

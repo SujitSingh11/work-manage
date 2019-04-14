@@ -42,7 +42,7 @@
                             <input type="date" class="form-control" name="project_deadline">
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer mt-3">
                         <button type="submit" name="add_project" class="btn btn-dark">Add</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                     </div>
