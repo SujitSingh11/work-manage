@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2019 at 03:17 PM
+-- Generation Time: Apr 15, 2019 at 07:03 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -64,7 +64,10 @@ INSERT INTO `tbl_client` (`client_id`, `m_id`, `project_id`, `first_name`, `last
 (5, 1, 18, 'Love', 'Deep', 'lovedeep@gmail.com', '2019-04-12 12:13:28'),
 (6, 1, 19, 'Ashu', 'Singh', 'ashu@gmail.com', '2019-04-12 12:14:54'),
 (7, 3, 20, 'Francis', 'Lepcha', '', '2019-04-12 17:02:33'),
-(8, 1, 21, 'Ashu', 'Singh', 'ashu@gmail.com', '2019-04-15 12:08:26');
+(8, 1, 21, 'Ashu', 'Singh', 'ashu@gmail.com', '2019-04-15 12:08:26'),
+(9, 1, 22, 'asdasd', 'asdsdsad', 'sadasd@asdasd', '2019-04-15 14:59:27'),
+(10, 1, 23, 'asdasd', 'asdasd', 'asd@sad', '2019-04-15 15:01:02'),
+(11, 4, 24, 'Someone', 'Else', 'some@gmail.com', '2019-04-15 15:31:36');
 
 -- --------------------------------------------------------
 
@@ -87,7 +90,8 @@ INSERT INTO `tbl_employee` (`e_id`, `user_id`, `active`) VALUES
 (2, 9, 1),
 (3, 12, 1),
 (4, 13, 0),
-(5, 14, 0);
+(5, 14, 0),
+(6, 16, 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +113,10 @@ INSERT INTO `tbl_employee_project` (`ep_id`, `e_id`, `project_id`) VALUES
 (14, 2, 18),
 (21, 2, 21),
 (24, 3, 18),
-(26, 1, 18);
+(26, 1, 18),
+(27, 1, 24),
+(28, 6, 24),
+(29, 6, 18);
 
 -- --------------------------------------------------------
 
@@ -129,7 +136,8 @@ CREATE TABLE `tbl_manager` (
 INSERT INTO `tbl_manager` (`m_id`, `user_id`) VALUES
 (1, 8),
 (2, 10),
-(3, 11);
+(3, 11),
+(4, 15);
 
 -- --------------------------------------------------------
 
@@ -152,10 +160,10 @@ CREATE TABLE `tbl_project` (
 --
 
 INSERT INTO `tbl_project` (`project_id`, `m_id`, `client_id`, `project_name`, `project_price`, `project_deadline`, `project_create_time`) VALUES
-(18, 1, 5, 'Work Management Tool', 5000, '2019-04-15', '2019-04-12 12:13:28'),
+(18, 1, 5, 'Work Management Tool', 5000, '2019-04-15', '2019-04-15 17:02:35'),
 (19, 1, 6, 'MamaDiario', 10000, '2019-04-15', '2019-04-12 14:44:11'),
 (20, 3, 7, 'VoiceOfAsia', 15000, '2019-04-19', '2019-04-12 17:04:17'),
-(21, 1, 6, 'Something', 5000, '2019-04-27', '2019-04-15 12:08:26');
+(24, 4, 11, 'New_1', 14000, '2019-05-16', '2019-04-15 15:31:37');
 
 -- --------------------------------------------------------
 
@@ -185,21 +193,7 @@ INSERT INTO `tbl_task` (`task_id`, `project_id`, `e_id`, `m_id`, `user_id`, `tas
 (16, 18, NULL, 1, 8, 'Something ', 'r sit voluptatem accusantium doloremque laudanti', '2019-04-14 15:37:00'),
 (17, 19, NULL, 1, 8, 'First Task', 'letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors n', '2019-04-14 22:55:38'),
 (18, 18, NULL, 1, 8, 'Something 2 ', 'asdsjdkfbksdjbfkjfn ksdjfgn sdf', '2019-04-14 23:44:21'),
-(19, 21, NULL, 1, 8, 'Something1', 'Someth else', '2019-04-15 17:39:20'),
-(20, 18, NULL, 1, 8, 'Something 3 ', 'Something else', '2019-04-15 18:08:46');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_task_assign`
---
-
-CREATE TABLE `tbl_task_assign` (
-  `ta_id` int(11) NOT NULL,
-  `task_id` int(11) NOT NULL,
-  `project_id` int(11) NOT NULL,
-  `e_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(21, 24, NULL, 4, 15, 'Something', 'askldjalskdlaksnf', '2019-04-15 21:02:47');
 
 -- --------------------------------------------------------
 
@@ -225,8 +219,8 @@ INSERT INTO `tbl_task_comment` (`tc_id`, `task_id`, `project_id`, `m_id`, `e_id`
 (11, 14, 18, 1, NULL, 'Create it with style'),
 (12, 17, 19, 1, NULL, 'Something'),
 (13, 18, 18, 1, NULL, 'asdasd'),
-(14, 19, 21, 1, NULL, 'New '),
-(15, 20, 18, 1, NULL, 'New 2 ');
+(15, 20, 18, 1, NULL, 'New 2 '),
+(16, 21, 24, 4, NULL, 'Something Else');
 
 -- --------------------------------------------------------
 
@@ -248,14 +242,14 @@ CREATE TABLE `tbl_task_status` (
 --
 
 INSERT INTO `tbl_task_status` (`ts_id`, `task_id`, `project_id`, `new`, `hold`, `completed`) VALUES
-(3, 12, 18, 0, 0, 1),
+(3, 12, 18, 0, 1, 0),
 (5, 14, 18, 0, 0, 1),
 (6, 15, 18, 0, 0, 1),
 (7, 16, 18, 0, 1, 0),
 (8, 17, 19, 1, 0, 0),
 (9, 18, 18, 1, 0, 0),
-(10, 19, 21, 1, 0, 0),
-(11, 20, 18, 1, 0, 0);
+(11, 20, 18, 1, 0, 0),
+(12, 21, 24, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -286,7 +280,9 @@ INSERT INTO `tbl_users` (`user_id`, `user_type`, `first_name`, `last_name`, `ema
 (11, 2, 'Akash', 'Singh', 'akash@gmail.com', '00000', '2019-04-12 16:45:11'),
 (12, 1, 'Pooja', 'Somani', 'pooja@gmail.com', '00000', '2019-04-13 11:19:51'),
 (13, 1, 'Shubham', 'Shirpurkar', 'shubham@gmail.com', '00000', '2019-04-14 19:38:22'),
-(14, 1, 'Ankita', 'Singh', 'ankita@gmail.com', '00000', '2019-04-14 19:40:10');
+(14, 1, 'Ankita', 'Singh', 'ankita@gmail.com', '00000', '2019-04-14 19:40:10'),
+(15, 2, 'Akash', 'Kulkarni', 'akashk@gmail.com', '00000', '2019-04-15 15:28:56'),
+(16, 1, 'Shubham', 'Singh', 'shub@gmail.com', '00000', '2019-04-15 15:30:23');
 
 --
 -- Indexes for dumped tables
@@ -335,12 +331,6 @@ ALTER TABLE `tbl_task`
   ADD PRIMARY KEY (`task_id`);
 
 --
--- Indexes for table `tbl_task_assign`
---
-ALTER TABLE `tbl_task_assign`
-  ADD PRIMARY KEY (`ta_id`);
-
---
 -- Indexes for table `tbl_task_comment`
 --
 ALTER TABLE `tbl_task_comment`
@@ -372,61 +362,55 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_client`
 --
 ALTER TABLE `tbl_client`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee`
 --
 ALTER TABLE `tbl_employee`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee_project`
 --
 ALTER TABLE `tbl_employee_project`
-  MODIFY `ep_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ep_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tbl_manager`
 --
 ALTER TABLE `tbl_manager`
-  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `tbl_task_assign`
---
-ALTER TABLE `tbl_task_assign`
-  MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_task_comment`
 --
 ALTER TABLE `tbl_task_comment`
-  MODIFY `tc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `tc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_task_status`
 --
 ALTER TABLE `tbl_task_status`
-  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

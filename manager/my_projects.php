@@ -65,6 +65,7 @@
                 <div class="row m-3">
                     <?php
                     if ($query_projects->num_rows > 0) {
+                        $no = 1;
                         while ($row = mysqli_fetch_assoc($query_projects)) {
                             $client_id = $row['client_id'];
                             $sql_client = "SELECT * FROM tbl_client WHERE client_id = $client_id";
@@ -97,13 +98,13 @@
                                             </button>
                                         </div>
                                         </form>
-                                        <button type="button" class="btn btn-round btn-warning mr-2">
+                                        <button type="button" class="btn btn-round btn-warning mr-2" data-toggle="modal" data-target="#editprojectmodal<?=$no?>">
                                             <i class="fa fa-edit"></i>
                                             <span>Edit</span>
                                         </button>
                                         <form action="delete_project.php" method="post">
                                             <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
-                                            <button type="submit" class="btn btn-round btn-danger mr-2">
+                                            <button type="submit" class="btn btn-round btn-danger mr-2" data-toggle="tooltip" data-placement="right" title="Delete">
                                                 <i class="fa fa-trash-alt"></i>
                                             </button>
                                         </form>
@@ -111,8 +112,64 @@
                                 </form>
                             </div>
                         </div>
-                        <?php
+                        <!-- Modal -->
+                        <div id="editprojectmodal<?=$no?>" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-dark-gradient">
+                                        <h5 class="modal-title display-4" style="font-size:30px; color:#fff;">Edit Project</h5>
+                                        <button type="button" style="color:#fff;" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color:#fff;">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form  method="POST" action="app_project_script.php">
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <label class="col-form-label">Project Name</label>
+                                                    <input type="text" class="form-control" name="project_name" value="<?=$row['project_name']?>">
+                                                </div>
+                                                <div class="col">
+                                                    <label class="col-form-label">Project Revenue (Optional)</label>
+                                                    <input type="number" class="form-control" name="project_price" value="<?=$row['project_price']?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <label class="col-form-label">Customer First Name</label>
+                                                    <input type="text" class="form-control" name="client_first_name" value="<?=$data_client['first_name']?>">
+                                                </div>
+                                                <div class="col">
+                                                    <label class="col-form-label">Customer Last Name</label>
+                                                    <input type="text" class="form-control" name="client_last_name" value="<?=$data_client['last_name']?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <label class="col-form-label">Customer Email (Optional)</label>
+                                                    <input type="email" class="form-control" name="client_email" value="<?=$data_client['email']?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <label class="col-form-label">Project Deadline (Optional)</label>
+                                                    <input type="date" class="form-control" value="<?=$row['project_deadline']?>">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer mt-3">
+                                                <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
+                                                <input type="hidden" name="client_id" value="<?=$data_client['client_id']?>">
+                                                <button type="submit" name="edit_project" class="btn btn-dark">Edit</button>
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <?php
+                        $no++;
                         }
                     }else {?>
                         <div class="alert alert-warning fade show mt-2" role="alert">
@@ -166,13 +223,13 @@
                     swal({
                         title: "<?=$_SESSION['success']?>",
                         text: "Click OK to continue",
-                        icon: "warning",
+                        icon: "success",
                         buttons: {
                             confirm: {
                                 text: "OK",
                                 value: true,
                                 visible: true,
-                                className: "btn btn-warning",
+                                className: "btn btn-success",
                                 closeModal: true
                             }
                         }

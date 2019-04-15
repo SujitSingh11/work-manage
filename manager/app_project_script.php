@@ -65,4 +65,50 @@
         }
 
     }
+    if (isset($_POST['edit_project'])) {
+
+        $project_name = mysqli_real_escape_string($conn,$_POST['project_name']);
+        $client_first_name = mysqli_real_escape_string($conn,$_POST['client_first_name']);
+        $client_last_name = mysqli_real_escape_string($conn,$_POST['client_last_name']);
+        if (isset($_POST['project_price'])) {
+            $project_price = mysqli_real_escape_string($conn,$_POST['project_price']);
+        }
+        if (isset($_POST['client_email'])) {
+            $client_email= mysqli_real_escape_string($conn,$_POST['client_email']);
+        }
+        if (isset($_POST['project_deadline'])) {
+            $project_deadline = date('Y-m-d',strtotime($_POST['project_deadline']));
+        }
+        $m_id = $_SESSION['m_id'];
+        $project_id = $_POST['project_id'];
+        $client_id = $_POST['client_id'];
+
+        if (isset($_POST['project_deadline'])&&isset($_POST['project_price'])) {
+            $sql_project ="UPDATE `tbl_project` SET `project_name`= '$project_name',`project_price`= $project_price,`project_deadline`= $project_deadline WHERE project_id = $project_id";
+        }elseif (isset($_POST['project_deadline'])) {
+            $sql_project ="UPDATE `tbl_project` SET `project_name`= '$project_name',`project_deadline`= $project_deadline WHERE project_id = $project_id";
+        }elseif (isset($_POST['project_price'])) {
+            $sql_project ="UPDATE `tbl_project` SET `project_name`= '$project_name',`project_price`= $project_price WHERE project_id = $project_id";
+        }
+
+        if (mysqli_query($conn,$sql_project)) {
+            if (isset($_POST['client_email'])) {
+                $sql_client = "UPDATE `tbl_client` SET `first_name`= '$client_first_name',`last_name`= '$client_last_name',`email`= '$client_email' WHERE client_id = $client_id";
+            }else {
+                $sql_client = "UPDATE `tbl_client` SET `first_name`= '$client_first_name',`last_name`= '$client_last_name' WHERE client_id = $client_id";
+            }
+
+            if (mysqli_query($conn,$sql_client)) {
+                $_SESSION['success'] = "Project and Client Information Successfully Updated";
+                header('location: my_projects.php');
+            }else {
+                $_SESSION['error'] = "Client Information Failed to be Updated".$sql_client;
+                header('location: my_projects.php');
+            }
+        }else {
+            $_SESSION['error'] = "Project and Client Information Failed to be Updated";
+            header('location: my_projects.php');
+        }
+
+    }
 ?>
