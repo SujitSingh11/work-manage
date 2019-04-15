@@ -1,7 +1,7 @@
 <?php
     include '../assets/db/db.php';
     session_start();
-    
+
     if ($_SESSION['logged_in'] == false) {
         $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
         die(header('Location: ../index.php'));
@@ -43,7 +43,21 @@
 						</div>
 					</div>
 				</div>
-
+                <div class="row m-3">
+                    <div class="col">
+                        <div class="card card-info card-annoucement card-round">
+                            <div class="card-body text-center">
+                                <div class="card-opening">Welcome <?=$_SESSION['first_name'].' '.$_SESSION['last_name']?>,</div>
+                                <div class="card-desc">
+                                    To add a Project click on Add Project.!
+                                </div>
+                                <div class="card-detail">
+                                    <div class="btn btn-light btn-rounded" data-toggle="modal" data-target="#addprojectmodal">Add Project</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">

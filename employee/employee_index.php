@@ -42,6 +42,18 @@
 						</div>
 					</div>
 				</div>
+                <div class="row m-3">
+                    <div class="col">
+                        <div class="card card-info card-annoucement card-round">
+                            <div class="card-body text-center">
+                                <div class="card-opening">Welcome <?=$_SESSION['first_name'].' '.$_SESSION['last_name']?>,</div>
+                                <div class="card-desc">
+                                    Go to All Project and Select the Project you want to Join.<br> If already Joined go to my project to view Task of the Joined Project.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
