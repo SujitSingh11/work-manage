@@ -91,15 +91,22 @@
                                         <div class="ml-2">
                                             <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
                                             <input type="hidden" name="client_id" value="<?=$data_client['client_id']?>">
-                                            <button type="button" class="btn btn-round btn-primary mr-2">
-                                                <i class="fa fa-edit"></i>
-                                                <span>Edit Project</span>
-                                            </button>
                                             <button type="submit" class="btn btn-round btn-primary mr-2">
                                                 <i class="fa fa-clipboard-list"></i>
-                                                <span>View Task</span>
+                                                <span>View</span>
                                             </button>
                                         </div>
+                                        </form>
+                                        <button type="button" class="btn btn-round btn-warning mr-2">
+                                            <i class="fa fa-edit"></i>
+                                            <span>Edit</span>
+                                        </button>
+                                        <form action="delete_project.php" method="post">
+                                            <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
+                                            <button type="submit" class="btn btn-round btn-danger mr-2">
+                                                <i class="fa fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </form>
                             </div>
@@ -143,6 +150,9 @@
 			</footer>
 		</div>
     </div>
+
+    <?php include 'add_project.php'; ?>
+    <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {
             location.href = "../login-system/logout.php";
@@ -150,8 +160,52 @@
         document.getElementById("logout2").onclick = function () {
             location.href = "../login-system/logout.php";
         };
+        <?php
+            if (isset($_SESSION['success']) AND !empty($_SESSION['success'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "<?=$_SESSION['success']?>",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['error']) AND !empty($_SESSION['error'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "<?=$_SESSION['error']?>",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['error']);
+            }
+        ?>
+        //== Class Initialization
+		jQuery(document).ready(function() {
+			SweetAlert2Demo.init();
+		});
     </script>
-    <?php include 'add_project.php'; ?>
-    <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>

@@ -32,11 +32,6 @@
     </script>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="../assets/css/atlantis.min.css">
-    <script>
-        .alert .close{
-
-        }
-    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -106,7 +101,7 @@
                             							</div>
                             						</div>
                             						<div class="modal-footer">
-                            							<button type="submit" name="register" class="btn btn-dark">Sign-up</button>
+                            							<button type="submit" name="register" class="btn btn-dark">Add</button>
                             							<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                             						</div>
                             					</form>

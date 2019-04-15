@@ -559,7 +559,7 @@
 		</div>
     </div>
 
-
+    <?php include 'add_project.php'; ?>
     <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {

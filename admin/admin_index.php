@@ -29,19 +29,29 @@
 
         <div class="main-panel">
 			<div class="content">
-                <div class="container m-4">
-                    <?php
-                        if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                            <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
-                                <?=$_SESSION['message']?>
-                                <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                <div class="panel-header bg-info-gradient">
+					<div class="page-inner py-3">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+							<div>
+								<h2 class="text-white pb-2 fw-bold mt-2">Dashboard</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="row m-3">
+                    <div class="col">
+                        <div class="card card-info card-annoucement card-round">
+                            <div class="card-body text-center">
+                                <div class="card-opening">Welcome <?=$_SESSION['first_name'].' '.$_SESSION['last_name']?>,</div>
+                                <div class="card-desc">
+                                    To add Manager accounts click on add.!
+                                </div>
+                                <div class="card-detail">
+                                    <div class="btn btn-light btn-rounded" data-toggle="modal" data-target="#addmanagermodal">Add</div>
+                                </div>
                             </div>
-                            <?php
-                            unset($_SESSION['message']);
-                        }
-                    ?>
+                        </div>
+                    </div>
                 </div>
 			</div>
 			<footer class="footer">
@@ -66,12 +76,15 @@
 						</ul>
 					</nav>
 					<div class="copyright ml-auto">
-						2019 by <a href="https://github.com/baby-developers">baby-developer</a>
+						@2019 Made by <a href="https://github.com/baby-developers">Sujit_Singh</a>
 					</div>
 				</div>
 			</footer>
 		</div>
     </div>
+
+    <?php include 'add_manager.php'; ?>
+    <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {
             location.href = "../login-system/logout.php";
@@ -79,8 +92,32 @@
         document.getElementById("logout2").onclick = function () {
             location.href = "../login-system/logout.php";
         };
+        <?php
+        if (isset($_SESSION['message']) AND !empty($_SESSION['message'])) { ?>
+            $('#alert_success').ready(function(e) {
+                swal({
+                    title: "<?=$_SESSION['message']?>",
+                    text: "Click OK to continue",
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-warning",
+                            closeModal: true
+                        }
+                    }
+                });
+            });
+        <?php
+        unset($_SESSION['message']);
+        }
+    ?>
+    //== Class Initialization
+    jQuery(document).ready(function() {
+        SweetAlert2Demo.init();
+    });
     </script>
-    <?php include 'add_manager.php'; ?>
-    <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>
