@@ -1,6 +1,10 @@
 <?php
     include '../assets/db/db.php';
     session_start();
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -22,16 +26,11 @@
     </script>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="../assets/css/atlantis.min.css">
-    <script>
-        .alert .close{
 
-        }
-    </script>
 </head>
 <body>
     <div class="wrapper">
         <?php include 'inc_nav_employee.php'; ?>
-
         <div class="main-panel">
 			<div class="content">
                 <div class="panel-header bg-primary-gradient">
@@ -43,18 +42,6 @@
 						</div>
 					</div>
 				</div>
-                <?php
-                    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
-                            <?=$_SESSION['message']?>
-                            <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php
-                        unset($_SESSION['message']);
-                    }
-                ?>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">

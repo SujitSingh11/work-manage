@@ -1,7 +1,10 @@
 <?php
     include '../assets/db/db.php';
     session_start();
-
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
     if (isset( $_POST['project_id'])) {
         $project_id = $_POST['project_id'];
         $client_id = $_POST['client_id'];
@@ -177,7 +180,17 @@
                                                                         <p><?=$data_task['task_decription']?></p>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-profile-nobd<?=$no?>" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
-
+                                                                        <?php
+                                                                            $m_id = $data_task['m_id'];
+                                                                            $task_id_c =$data_task['task_id'];
+                                                                            $sql_task_comment = "SELECT * FROM tbl_task_comment WHERE m_id = $m_id AND task_id =$task_id_c";
+                                                                            $query_task_comment = mysqli_query($conn,$sql_task_comment);
+                                                                            if (mysqli_num_rows($query_task_comment) > 0) {
+                                                                                while ($data_comment = mysqli_fetch_assoc($query_task_comment)) {
+                                                                                    echo "<p>".$data_comment['task_comment']."</p>";
+                                                                                }
+                                                                            }
+                                                                        ?>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-messages-nobd<?=$no?>" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
                                                                         <?php
@@ -277,7 +290,17 @@
                                                                         <p><?=$data_task_2['task_decription']?></p>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-profile-nobd<?=$no_2?>" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
-
+                                                                        <?php
+                                                                            $m_id_2 = $data_task_2['m_id'];
+                                                                            $task_id_c_2 =$data_task_2['task_id'];
+                                                                            $sql_task_comment_2 = "SELECT * FROM tbl_task_comment WHERE m_id = $m_id_2 AND task_id =$task_id_c_2";
+                                                                            $query_task_comment_2 = mysqli_query($conn,$sql_task_comment_2);
+                                                                            if (mysqli_num_rows($query_task_comment_2) > 0) {
+                                                                                while ($data_comment_2 = mysqli_fetch_assoc($query_task_comment_2)) {
+                                                                                    echo "<p>".$data_comment_2['task_comment']."</p>";
+                                                                                }
+                                                                            }
+                                                                        ?>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-messages-nobd<?=$no_2?>" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
                                                                         <?php
@@ -341,7 +364,17 @@
                                                                         <p><?=$data_task_3['task_decription']?></p>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-profile-nobd<?=$no_3?>" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
-
+                                                                        <?php
+                                                                            $m_id_3 = $data_task_3['m_id'];
+                                                                            $task_id_c_3 =$data_task_3['task_id'];
+                                                                            $sql_task_comment_3 = "SELECT * FROM tbl_task_comment WHERE m_id = $m_id_3 AND task_id =$task_id_c_3";
+                                                                            $query_task_comment_3 = mysqli_query($conn,$sql_task_comment_3);
+                                                                            if (mysqli_num_rows($query_task_comment_3) > 0) {
+                                                                                while ($data_comment_3 = mysqli_fetch_assoc($query_task_comment_3)) {
+                                                                                    echo "<p>".$data_comment_3['task_comment']."</p>";
+                                                                                }
+                                                                            }
+                                                                        ?>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-messages-nobd<?=$no_3?>" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
                                                                         <?php

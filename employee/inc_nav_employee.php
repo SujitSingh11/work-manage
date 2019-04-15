@@ -104,22 +104,16 @@
                             <div class="quick-actions-scroll scrollbar-outer">
                                 <div class="quick-actions-items">
                                     <div class="row m-0">
-                                        <a class="col-4 col-md-4 p-0" href="#">
+                                        <a class="col-4 col-md-6 p-0" href="all_projects.php">
                                             <div class="quick-actions-item">
                                                 <i class="flaticon-arrow"></i>
                                                 <span class="text">Join Project</span>
                                             </div>
                                         </a>
-                                        <a class="col-4 col-md-4 p-0" href="#" data-toggle="modal" data-target="#addprojectmodal">
+                                        <a class="col-4 col-md-6 p-0" href="my_projects.php">
                                             <div class="quick-actions-item">
                                                 <i class="flaticon-file"></i>
                                                 <span class="text">My Projects</span>
-                                            </div>
-                                        </a>
-                                        <a class="col-4 col-md-4 p-0" href="my_projects.php">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-file-1"></i>
-                                                <span class="text">Projects</span>
                                             </div>
                                         </a>
                                     </div>
@@ -140,7 +134,7 @@
                                         <div class="avatar-lg"><img src="../assets/img/profile3.png" alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
                                             <h4><?=$_SESSION['first_name'].' '.$_SESSION['last_name']?></h4>
-                                            <p class="text-muted"><?=$_SESSION['email']?></p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">
+                                            <p class="text-muted"><?=$_SESSION['email']?></p><a href="my_profile.php" class="btn btn-xs btn-secondary btn-sm">
                                                 View Profile
                                             </a>
                                         </div>
@@ -148,10 +142,7 @@
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">Inbox</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Account Setting</a>
+                                    <a class="dropdown-item" href="my_profile.php">My Profile</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" id="logout2">Logout</a>
                                 </li>
@@ -183,13 +174,8 @@
                         <div class="collapse in" id="collapseExample">
                             <ul class="nav">
                                 <li>
-                                    <a href="#profile">
+                                    <a href="my_profile.php">
                                         <span class="link-collapse">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#edit">
-                                        <span class="link-collapse">Edit Profile</span>
                                     </a>
                                 </li>
                             </ul>
@@ -219,12 +205,6 @@
                         <a href="all_projects.php">
                             <i class="fas fa-folder"></i>
                             <p>All Projects</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#base">
-                            <i class="fas fa-cogs"></i>
-                            <p>Settings</p>
                         </a>
                     </li>
                     <li class="nav-item">

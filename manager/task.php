@@ -1,6 +1,10 @@
 <?php
     include '../assets/db/db.php';
     session_start();
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
 
     if (isset( $_POST['project_id'])) {
         $project_id = $_POST['project_id'];
@@ -217,7 +221,17 @@
                                                                         <p><?=$data_task['task_decription']?></p>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-profile-nobd<?=$no?>" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
-
+                                                                        <?php
+                                                                            $m_id = $data_task['m_id'];
+                                                                            $task_id_c =$data_task['task_id'];
+                                                                            $sql_task_comment = "SELECT * FROM tbl_task_comment WHERE m_id = $m_id AND task_id =$task_id_c";
+                                                                            $query_task_comment = mysqli_query($conn,$sql_task_comment);
+                                                                            if (mysqli_num_rows($query_task_comment) > 0) {
+                                                                                while ($data_comment = mysqli_fetch_assoc($query_task_comment)) {
+                                                                                    echo "<p>".$data_comment['task_comment']."</p>";
+                                                                                }
+                                                                            }
+                                                                        ?>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-messages-nobd<?=$no?>" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
                                                                         <?php
@@ -244,8 +258,6 @@
                                                                     <input type="hidden" name="client_id" value="<?=$client_id?>">
                                                                     <button class="dropdown-item" type="submit" name="hold">Move To Hold</button>
                                                                     <button class="dropdown-item" type="submit" name="done">Move To Completed</button>
-                                                                    <div role="separator" class="dropdown-divider"></div>
-                                                                    <button class="dropdown-item" type="submit" name="delete">Delete</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -264,11 +276,11 @@
                     </div>
                     <div class="col-4 mt-2">
                         <div class="card card-round">
-                            <div class="card-header">
-                                <div class="card-title fw-mediumbold">Add Members to the project</div>
+                            <div class="card-header bg-dark-gradient">
+                                <div class="card-title fw-mediumbold" style="color:#fff;">Add Members</div>
                             </div>
-                            <div class="card-body" style="height:450px; overflow-y: scroll;">
-                                <div class="card-list">
+                            <div class="card-body">
+                                <div class="card-list" style="overflow-y: scroll;height:155px;">
                                     <?php
                                         $sql_suggest = "SELECT tbl_users.`user_id`, tbl_employee.`e_id`, tbl_users.`first_name`, tbl_users.`last_name`,tbl_users.`email` FROM tbl_users, tbl_employee WHERE tbl_users.user_id=tbl_employee.user_id";
                                         $query_suggest = mysqli_query($conn,$sql_suggest);
@@ -279,7 +291,7 @@
                                                 $query_join = mysqli_query($conn,$sql_join);
                                                 if (mysqli_num_rows($query_join) == 0) {
                                                 ?>
-                                                <div class="item-list">
+                                                <form class="item-list" method="POST" action="task_script.php">
                                                     <div class="avatar">
                                                         <img src="../assets/img/profile4.png" alt="..." class="avatar-img rounded-circle">
                                                     </div>
@@ -287,10 +299,50 @@
                                                         <div class="username"><?=$data_suggest['first_name']." ".$data_suggest['last_name']?></div>
                                                         <div class="status"><?=$data_suggest['email']?></div>
                                                     </div>
-                                                    <button class="btn btn-icon btn-primary btn-round btn-xs">
+                                                    <input type="hidden" name="project_id" value="<?=$project_id?>">
+                                                    <input type="hidden" name="client_id" value="<?=$client_id?>">
+                                                    <input type="hidden" name="e_id" value="<?=$e_id?>">
+                                                    <button class="btn btn-icon btn-primary btn-round btn-xs mr-4" type="submit" name="plus">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
-                                                </div>
+                                                </form>
+                                                <?php
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="card-header bg-dark-gradient">
+                                <div class="card-title fw-mediumbold" style="color:#fff;">Remove Members</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-list" style="overflow-y: scroll;height:150px;">
+                                    <?php
+                                        $sql_suggest = "SELECT tbl_users.`user_id`, tbl_employee.`e_id`, tbl_users.`first_name`, tbl_users.`last_name`,tbl_users.`email` FROM tbl_users, tbl_employee WHERE tbl_users.user_id=tbl_employee.user_id";
+                                        $query_suggest = mysqli_query($conn,$sql_suggest);
+                                        if (mysqli_num_rows($query_suggest) > 0) {
+                                            while ($data_suggest = mysqli_fetch_assoc($query_suggest)) {
+                                                $e_id = $data_suggest['e_id'];
+                                                $sql_join = "SELECT * FROM tbl_employee_project WHERE e_id = $e_id AND project_id = $project_id";
+                                                $query_join = mysqli_query($conn,$sql_join);
+                                                if (mysqli_num_rows($query_join) > 0) {
+                                                ?>
+                                                <form class="item-list" method="POST" action="task_script.php">
+                                                    <div class="avatar">
+                                                        <img src="../assets/img/profile4.png" alt="..." class="avatar-img rounded-circle">
+                                                    </div>
+                                                    <div class="info-user ml-3">
+                                                        <div class="username"><?=$data_suggest['first_name']." ".$data_suggest['last_name']?></div>
+                                                        <div class="status"><?=$data_suggest['email']?></div>
+                                                    </div>
+                                                    <input type="hidden" name="project_id" value="<?=$project_id?>">
+                                                    <input type="hidden" name="client_id" value="<?=$client_id?>">
+                                                    <input type="hidden" name="e_id" value="<?=$e_id?>">
+                                                    <button class="btn btn-icon btn-primary btn-round btn-xs mr-4" type="submit" name="minus">
+                                                        <i class="fa fa-minus"></i>
+                                                    </button>
+                                                </form>
                                                 <?php
                                                 }
                                             }
@@ -335,7 +387,17 @@
                                                                         <p><?=$data_task_2['task_decription']?></p>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-profile-nobd<?=$no_2?>" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
-
+                                                                        <?php
+                                                                            $m_id_2 = $data_task_2['m_id'];
+                                                                            $task_id_c_2 =$data_task_2['task_id'];
+                                                                            $sql_task_comment_2 = "SELECT * FROM tbl_task_comment WHERE m_id = $m_id_2 AND task_id =$task_id_c_2";
+                                                                            $query_task_comment_2 = mysqli_query($conn,$sql_task_comment_2);
+                                                                            if (mysqli_num_rows($query_task_comment_2) > 0) {
+                                                                                while ($data_comment_2 = mysqli_fetch_assoc($query_task_comment_2)) {
+                                                                                    echo "<p>".$data_comment_2['task_comment']."</p>";
+                                                                                }
+                                                                            }
+                                                                        ?>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-messages-nobd<?=$no_2?>" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
                                                                         <?php
@@ -362,8 +424,6 @@
                                                                     <input type="hidden" name="client_id" value="<?=$client_id?>">
                                                                     <button class="dropdown-item" type="submit" name="available">Move To Available</button>
                                                                     <button class="dropdown-item" type="submit" name="done">Move To Completed</button>
-                                                                    <div role="separator" class="dropdown-divider"></div>
-                                                                    <button class="dropdown-item" type="submit" name="delete">Delete</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -414,7 +474,17 @@
                                                                         <p><?=$data_task_3['task_decription']?></p>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-profile-nobd<?=$no_3?>" role="tabpanel" aria-labelledby="v-pills-profile-tab-nobd">
-
+                                                                        <?php
+                                                                            $m_id_3 = $data_task_3['m_id'];
+                                                                            $task_id_c_3 =$data_task_3['task_id'];
+                                                                            $sql_task_comment_3 = "SELECT * FROM tbl_task_comment WHERE m_id = $m_id_3 AND task_id =$task_id_c_3";
+                                                                            $query_task_comment_3 = mysqli_query($conn,$sql_task_comment_3);
+                                                                            if (mysqli_num_rows($query_task_comment_3) > 0) {
+                                                                                while ($data_comment_3 = mysqli_fetch_assoc($query_task_comment_3)) {
+                                                                                    echo "<p>".$data_comment_3['task_comment']."</p>";
+                                                                                }
+                                                                            }
+                                                                        ?>
                     												</div>
                     												<div class="tab-pane fade" id="v-pills-messages-nobd<?=$no_3?>" role="tabpanel" aria-labelledby="v-pills-messages-tab-nobd">
                                                                         <?php
@@ -441,8 +511,6 @@
                                                                     <input type="hidden" name="client_id" value="<?=$client_id?>">
                                                                     <button class="dropdown-item" type="submit" name="available">Move To Available</button>
                                                                     <button class="dropdown-item" type="submit" name="hold">Move To Hold</button>
-                                                                    <div role="separator" class="dropdown-divider"></div>
-                                                                    <button class="dropdown-item" type="submit" name="delete">Delete</button>
                                                                 </div>
                                                             </form>
                                                         </div>

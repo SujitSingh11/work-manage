@@ -1,7 +1,10 @@
 <?php
     include '../assets/db/db.php';
     session_start();
-
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
     $sql_employees = "SELECT tbl_users.user_id AS user_id, tbl_employee.e_id AS e_id, tbl_users.first_name AS first_name, tbl_users.last_name AS last_name,
     tbl_users.email AS email, tbl_employee.active AS active
             FROM tbl_users

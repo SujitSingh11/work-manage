@@ -79,4 +79,23 @@
         $_SESSION['not_done'] = "Delete is under maintance";
         header('location: task.php');
     }
+
+    if (isset($_POST['plus'])) {
+        $e_id = $_POST['e_id'];
+        $project_id = $_POST['project_id'];
+        $sql_plus = "INSERT INTO `tbl_employee_project`(`e_id`, `project_id`) VALUES ($e_id,$project_id)";
+        if (mysqli_query($conn,$sql_plus)) {
+            $_SESSION['done'] = "Member added to Project";
+            header('location: task.php');
+        }
+    }
+    if (isset($_POST['minus'])) {
+        $e_id = $_POST['e_id'];
+        $project_id = $_POST['project_id'];
+        $sql_minus = "DELETE FROM `tbl_employee_project` WHERE e_id = $e_id AND project_id = $project_id";
+        if (mysqli_query($conn,$sql_minus)) {
+            $_SESSION['not_done'] = "Member removed from Project";
+            header('location: task.php');
+        }
+    }
 ?>

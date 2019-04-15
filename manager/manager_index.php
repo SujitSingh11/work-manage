@@ -1,6 +1,11 @@
 <?php
     include '../assets/db/db.php';
     session_start();
+    
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -22,11 +27,6 @@
     </script>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="../assets/css/atlantis.min.css">
-    <script>
-        .alert .close{
-
-        }
-    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -43,18 +43,7 @@
 						</div>
 					</div>
 				</div>
-                <?php
-                    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
-                            <?=$_SESSION['message']?>
-                            <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php
-                        unset($_SESSION['message']);
-                    }
-                ?>
+
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
@@ -84,6 +73,9 @@
 			</footer>
 		</div>
     </div>
+
+    <?php include 'add_project.php'; ?>
+    <?php include '../includes/inc_js.php'; ?>
     <script>
         document.getElementById("logout").onclick = function () {
             location.href = "../login-system/logout.php";
@@ -91,8 +83,52 @@
         document.getElementById("logout2").onclick = function () {
             location.href = "../login-system/logout.php";
         };
+        <?php
+            if (isset($_SESSION['message']) AND !empty($_SESSION['message'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "<?=$_SESSION['message']?>",
+                        text: "Click OK to continue",
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-success",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['message']);
+            }
+            if (isset($_SESSION['error']) AND !empty($_SESSION['error'])) { ?>
+                $('#alert_success').ready(function(e) {
+                    swal({
+                        title: "<?=$_SESSION['error']?>",
+                        text: "Click OK to continue",
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-warning",
+                                closeModal: true
+                            }
+                        }
+                    });
+                });
+            <?php
+            unset($_SESSION['error']);
+            }
+        ?>
+        //== Class Initialization
+		jQuery(document).ready(function() {
+			SweetAlert2Demo.init();
+		});
     </script>
-    <?php include 'add_project.php'; ?>
-    <?php include '../includes/inc_js.php'; ?>
 </body>
 </html>

@@ -1,9 +1,15 @@
 <?php
     include '../assets/db/db.php';
     session_start();
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
     $e_id = $_SESSION['e_id'];
-    $sql_projects="SELECT  tbl_project.`project_id`,tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_employee_project.`e_id` FROM tbl_project ,tbl_employee_project WHERE tbl_project.`project_id` = tbl_employee_project.`project_id` ";
+    $sql_projects="SELECT  tbl_project.`project_id`,tbl_project.`m_id`,tbl_project.`client_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_employee_project.`e_id` FROM tbl_project ,tbl_employee_project WHERE tbl_project.`project_id` = tbl_employee_project.`project_id` ";
     $query_projects = mysqli_query($conn,$sql_projects);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -25,11 +31,6 @@
     </script>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="../assets/css/atlantis.min.css">
-    <script>
-        .alert .close{
-
-        }
-    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -37,7 +38,7 @@
 
         <div class="main-panel">
 			<div class="content">
-                <div class="panel-header bg-primary-gradient">
+                <div class="panel-header bg-danger-gradient">
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
@@ -46,23 +47,23 @@
 						</div>
 					</div>
 				</div>
-                <?php
-                    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ){?>
-                        <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
-                            <?=$_SESSION['message']?>
-                            <button type="button" class="close" style="line-height: 0px;" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php
-                        unset($_SESSION['message']);
-                    }
-                ?>
                 <div class="row m-3">
                     <?php
                     if ($query_projects->num_rows > 0) {
                         while ($row = mysqli_fetch_assoc($query_projects)) {
                             if ($row['e_id'] == $e_id) {
+                                $project_id = $row['project_id'];
+                                $sql_task = "SELECT  tbl_task.task_id AS task_id, tbl_task.project_id AS project_id, tbl_task.m_id AS m_id, tbl_task.e_id AS e_id, tbl_task.user_id AS user_id, tbl_task.task_title AS task_title, tbl_task.task_decription AS task_decription, tbl_task.task_time AS task_time, tbl_task_status.new AS new, tbl_task_status.hold AS hold, tbl_task_status.completed AS completed FROM tbl_task INNER JOIN tbl_task_status ON tbl_task_status.task_id = tbl_task.task_id WHERE tbl_task.project_id = $project_id";
+                                $sql_employee_project = "SELECT * FROM `tbl_employee_project` WHERE project_id = $project_id";
+                                $sql_task_satus = "SELECT * FROM `tbl_task_status` WHERE project_id = $project_id AND completed = 1";
+
+                                $query_task = mysqli_query($conn,$sql_task);
+                                $query_employee_project = mysqli_query($conn,$sql_employee_project);
+                                $query_task_status = mysqli_query($conn,$sql_task_satus);
+
+                                $num_employee_project = mysqli_num_rows($query_employee_project);
+                                $num_task = mysqli_num_rows($query_task);
+                                $num_task_status = mysqli_num_rows($query_task_status);
                             ?>
                             <div class="col col-md-4">
                                 <div class="card">
@@ -73,15 +74,18 @@
                                         <div class="row mr-2">
                                             <div class="col-md-12">
                                                 <p>Deadline: <?= $row['project_deadline']?></p>
-                                                <p>Total Task: </p>
-                                                <p>Completed : </p>
-                                                <p>Remaning : </p>
+                                                <p>Total Task: <?= $num_task?></p>
+                                                <p>Completed : <?= $num_task_status?></p>
+                                                <p>Remaning : <?php $rem = $num_task-$num_task_status; echo $rem;?></p>
+                                                <p>Members : <?= $num_employee_project?></p>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row mt-1 mr-2">
                                             <div class="ml-2">
-                                                <button type="button" name="view_task" class="btn btn-round btn-primary mr-2">
+                                                <input type="hidden" name="project_id" value="<?=$row['project_id']?>">
+                                                <input type="hidden" name="client_id" value="<?=$row['client_id']?>">
+                                                <button type="submit" name="view_task" class="btn btn-round btn-primary mr-2">
                                                     <i class="fa fa-tasks mr-1"></i>
                                                     <span>View Task</span>
                                                 </button>

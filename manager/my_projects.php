@@ -1,6 +1,10 @@
 <?php
     include '../assets/db/db.php';
     session_start();
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
     $m_id = $_SESSION['m_id'];
     $sql_projects="SELECT * FROM tbl_project WHERE m_id = $m_id";
     $query_projects = mysqli_query($conn,$sql_projects);

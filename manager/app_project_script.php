@@ -48,19 +48,19 @@
                         $_SESSION['message'] = "Project and Client Information Successfully Added";
                         header('location: manager_index.php');
                     }else {
-                        $_SESSION['message'] = "Client Information Failed to be Added3";
+                        $_SESSION['error'] = "Client Information Failed to be Added3";
                         header('location: manager_index.php');
                     }
                 }else {
-                    $_SESSION['message'] = "Client Information Failed to be Added2".$sql_client;
+                    $_SESSION['error'] = "Client Information Failed to be Added2".$sql_client;
                     header('location: manager_index.php');
                 }
             }else {
-                $_SESSION['message'] = "Project Information Failed to be Added";
+                $_SESSION['error'] = "Project Information Failed to be Added";
                 header('location: manager_index.php');
             }
         }else {
-            $_SESSION['message'] = "Project and Client Information Failed to be Added";
+            $_SESSION['error'] = "Project and Client Information Failed to be Added";
             header('location: manager_index.php');
         }
 

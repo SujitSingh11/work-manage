@@ -1,7 +1,10 @@
 <?php
     include '../assets/db/db.php';
     session_start();
-
+    if ($_SESSION['logged_in'] == false) {
+        $_SESSION['message'] = "You are not Signed In.! <br> Please Sign in.";
+        die(header('Location: ../index.php'));
+    }
     $sql_projects="SELECT  tbl_project.`project_id`,tbl_project.`m_id`,tbl_project.`project_name` , tbl_project.`project_price`, tbl_project.`project_deadline`, tbl_client.`first_name`,tbl_client.`last_name` FROM tbl_project ,tbl_client WHERE tbl_project.`project_id` = tbl_client.`project_id`";
     $query_projects = mysqli_query($conn,$sql_projects);
 
@@ -38,7 +41,7 @@
 
         <div class="main-panel">
 			<div class="content">
-                <div class="panel-header bg-primary-gradient">
+                <div class="panel-header bg-warning-gradient">
 					<div class="page-inner py-3">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
@@ -204,7 +207,28 @@
             unset($_SESSION['leave']);
             }
         ?>
-
+        <?php
+        if (isset($_SESSION['active']) AND !empty($_SESSION['active'])) { ?>
+            $('#alert_success').ready(function(e) {
+                swal({
+                    title: "<?=$_SESSION['active']?>",
+                    text: "Click OK to continue",
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-warning",
+                            closeModal: true
+                        }
+                    }
+                });
+            });
+        <?php
+        unset($_SESSION['active']);
+        }
+        ?>
         //== Class Initialization
 		jQuery(document).ready(function() {
 			SweetAlert2Demo.init();
